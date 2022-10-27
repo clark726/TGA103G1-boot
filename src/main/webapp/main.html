@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+<link rel="stylesheet" href="./css/main.css" />
+<link rel="stylesheet" href="./css/chat.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+	crossorigin="anonymous" />
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+	crossorigin="anonymous"></script>
+
+	</head>
+<body>
+
+	<header class="header">
+		<div class="fl_left">
+			<h1 id="logo_h1">
+				<a href="/TGA103G1/main.html" id="logo">Bar.Jar.Jo</a>
+			</h1>
+		</div>
+
+		<nav class="fl_right">
+			<ul class="nav_ul">
+				<li><a href="#" id="home">HOME</a></li>
+				<li><a href="#">地圖</a></li>
+				<li><a href="#">討論區</a></li>
+				<li><a href="#" data-bs-toggle="modal" id="loginbox"
+					data-bs-target="#loginModal">廠商專區</a><a
+					href="/TGA103G1/ShowProduct" id="normal"
+					style="display: none; width: 65px;">廠商專區</a></li>
+				<li><a href="#" class="icon">店家主題</a>
+					<ul id="store" class="dropdown-menu">
+						<li><a href="http://localhost:8080/back-end/store/storeType.html" data-themid="1" class="theme_id">Bistro</a></li>
+						<li><a href="http://localhost:8080/back-end/store/storeType.html" data-themid="2" class="theme_id">Cocktail
+								bar</a></li>
+						<li><a href="http://localhost:8080/back-end/store/storeType.html" data-themid="3" class="theme_id">Whisky
+								bar</a></li>
+					</ul></li>
+				<li><a href="#" class="icon">會員專區</a>
+					<ul id="store" class="dropdown-menu">
+						<li><a href="/TGA103G1/front-end/member/jsp/member_center.jsp">修改會員資料</a></li>
+						<li><a href="/TGA103G1/front-end/member/jsp/member_centerChangePsw.jsp">修改密碼</a></li>
+						<li><a href="/TGA103G1/front-end/member/jsp/member_centerMyLove.jsp">我的最愛</a></li>
+						<li><a href="/TGA103G1/front-end/member/jsp/menberCenter%EF%BC%ADanegerOrder.html">訂單管理</a></li>
+					</ul></li>
+
+
+				<li><a href="/TGA103G1/back-end/shop/shopProduct.html">購物商城</a></li>
+				<li><a href="/TGA103G1/front-end/member/login.jsp" id="login">登入註冊</a><a
+					href="/TGA103G1/StoreLogout" id="logout"
+					style="display: none; width: 40px;">登出</a></li>
+			</ul>
+		</nav>
+	</header>
+
+
+	<!-- 跳出廠商視窗 -->
+
+	<div class="modal fade" id="loginModal">
+		<div class="modal-dialog">
+			<div class="modal-content"
+				style="background-color: rgb(190 188 188)">
+				<!-- header -->
+				<div class="modal-header">
+					<h3>廠商登入</h3>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<!-- body -->
+				<div class="modal-body"></div>
+
+				<!-- 登入表單 -->
+				<form action="">
+					<!-- email -->
+					<div class="form-group">
+						<input type="account" class="account form-control"
+							placeholder="帳號" id="account" />
+					</div>
+					<!-- password -->
+					<div class="form-group">
+						<input type="password" class="password form-control"
+							placeholder="密碼" id="password" />
+					</div>
+					<!-- checkbox -->
+					<div class="form-group">
+						<input type="checkbox" class="remember" placeholder="密碼"
+							style="margin-bottom: 20px; margin-left: 30px" />記住密碼
+						<span id="errMsg" class="error"
+							style="margin-left: 70px; color: red"></span>
+					</div>
+					<!-- 送出按鈕 -->
+					<button type="button" id="btn1" class="btn btn-info"
+						style="width: 80%; font-size: 25px; color: white; margin-left: 50px; background-color: rgb(68, 48, 43);">
+						登入</button>
+				</form>
+				<!-- Footer -->
+				<div class="modal-footer">
+					<div class="sigup">
+						<span>尚加入廠商</span> <a href="/TGA103G1/back-end/store/storesumit.html" type="button" class="member"
+							style="text-decoration: none">立即加入</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 跳出聊天視窗 -->
+
+	<div class="modal fade" id="chaticon">
+		<div class="modal-dialog">
+			<div class="modal-content"
+				style="background-color: rgb(211, 206, 201)">
+				<!-- header -->
+				<div class="modal-header">
+					<h3>聊天室</h3>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<!-- body -->
+				<div class="modal-body"></div>
+
+				<!-- 聊天表單 -->
+				<div class="container">
+					<h3 id="statusOutput" class="statusOutput"></h3>
+					<div id="row"></div>
+					<div id="messagesArea" class="panel message-area" style="
+				   margin-top: 0px;
+					margin-left: 200px;
+					height: 304px;
+				"></div>
+					<div class="panel input-area">
+					  <input id="message" class="text-field" type="text" placeholder="Message" onkeydown="if (event.keyCode == 13) sendMessage();" /> 
+					  <input type="submit" id="sendMessage" class="button" value="Send" onclick="sendMessage();" /> 
+					  <input type="button" id="connect" class="button" value="Connect" onclick="connect();" /> 
+					  <input type="button" id="disconnect" class="button" value="Disconnect" onclick="disconnect();" />
+					</div>
+						</div>
+				<!-- Footer -->
+				<div class="modal-footer">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 輪播圖片開始 -->
+	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+		<div class="carousel-indicators">
+		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		</div>
+		<div class="carousel-inner">
+		  <div class="carousel-item active">
+			<img src="./img/dsc01284-1649232451.jpeg" class="picture" alt="...">
+		  </div>
+		  <div class="carousel-item">
+			<img src="./img/1.webp" class="picture" alt="...">
+		  </div>
+		  <div class="carousel-item">
+			<img src="./img/bistro.webp" class="picture" alt="...">
+		  </div>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+		  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		  <span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		  <span class="visually-hidden">Next</span>
+		</button>
+	  </div>
+	<!-- 輪播圖片結束 -->
+
+	<main class="main">
+		<div class="Classification">
+			<ul class="ul_Classification">
+				<li><a href="#" class="Classification_name"> <img
+						src="./img/Brown Delicious Arrabbiata Spaghetti Food Restaurant Menu Instagram Post.png"
+						style="width: 250px; height: 250px" />
+						<h2>Bistro</h2></a></li>
+				<li><a href="#" class="Classification_name"> <img
+						src="./img/Steel Blue Modern Oktoberfest Instagram Post.png"
+						style="width: 250px; height: 250px" />
+						<h2>Cocktail Bar</h2></a></li>
+				<li><a href="#" class="Classification_name"> <img
+						src="./img/Yellow Simple Photo Best Beer to Try Out Instagram Post.png"
+						alt="" style="width: 250px; height: 250px" />
+						<h2>Whisky Bar</h2></a></li>
+			</ul>
+		</div>
+	</main>
+	<!-- 聊天按鈕 -->
+	<div class="icon">
+		<img src="./img/chat.png" id="chaticonpricture" data-bs-toggle="modal" data-bs-target="#chaticon"
+		 style="width:60px ; height:60px ; display: none;  position: absolute; right: 10px; bottom: 40px;" class="picture">
+	</div>
+
+	<footer id="footer" class="">
+		<div class="div_li">
+			<h2>組員履歷</h2>
+			<ul>
+				<li><a href="">祔利</a> <a href="">柏翰</a> <a href="">冠綸</a> <a
+					href="">鉅樺</a> <a href="">成憲</a> <a href="">凱鈞</a></li>
+			</ul>
+		</div>
+		<div class="div_img">
+		</div>
+	</footer>
+
+		<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+		crossorigin="anonymous"></script>
+		<script src="./back-end/js/chat.js"></script>
+	
+	<script>
+       
+
+	
+//登入
+(() => {
+  const username = document.querySelector("#account");
+  const password = document.querySelector("#password");
+  const errMsg = document.querySelector("#errMsg");
+  document.getElementById("btn1").addEventListener("click", () => {
+    fetch("http://localhost:8080/api/StoreLogin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify({
+        account: username.value,
+        password: password.value,
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((body) => {
+        errMsg.textContent = "";
+        const { successful, message } = body;
+        if (successful) {
+          const { account, password } = body;
+          sessionStorage.setItem("account", account);
+          location = "http://localhost:8080/back-end/store/storealter.html";
+        } else {
+          errMsg.textContent = message;
+        }
+      });
+  });
+})();
+
+//登出
+document.querySelector("#logout").addEventListener("click", function(){
+    if(sessionStorage.getItem("account")){
+		sessionStorage.removeItem("account")
+	}else if(sessionStorage.getItem("memberAccount")){
+		sessionStorage.removeItem("memberAccount")
+	}
+	
+  })
+
+//換登出鈕
+function changelog() {
+  if (sessionStorage.getItem("account")) {
+    document.querySelector("#login").style.display = "none";
+    document.querySelector("#logout").style.display = "block";
+    document.querySelector("#loginbox").style.display = "none";
+    document.querySelector("#normal").style.display = "block";
+  }else if(sessionStorage.getItem("memberAccount")){
+	document.querySelector("#login").style.display = "none";
+    document.querySelector("#logout").style.display = "block";
+  }
+
+}
+changelog();
+
+
+
+
+//點擊theme_id
+let allthemeid =  document.querySelectorAll(".theme_id");
+allthemeid.forEach(function(e){
+  e.addEventListener("click", function(e){
+		let id = e.target.getAttribute("data-themid");
+		sessionStorage.setItem("themeId",id)
+  })
+})
+	
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+spring:
+  datasource: #dataSource
+    url: jdbc:mysql://localhost:3306/barjarjo?serverTimezone=Asia/Taipei
+    password: password
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:    #SessionFactory
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password: 
+    jedis:
+      pool:
+        max-active: -1
+        max-idle: 8
+        min-idle: 0
+    timeout: 1000

@@ -19,8 +19,9 @@ public class VerifyAccount {
 	private StoreService StoreSvc;
 
 	@RequestMapping({ "/VerifyAccount" })
-	public ResponseEntity<Object> verifyAccount(@RequestBody StoreVO store) {
+	public ResponseEntity<StoreVO> verifyAccount(@RequestBody StoreVO store) {
 		// 判斷是否重複
+		
 		if (StoreSvc.findStoreAccount(store.getAccount()) != null) {
 			store.setSuccessful(false);
 			store.setMessage("帳號重複");
@@ -28,7 +29,7 @@ public class VerifyAccount {
 			store.setSuccessful(true);
 			store.setMessage("此帳號可以使用");
 		}
-		return new ResponseEntity<Object>(store, HttpStatus.OK);
+		return new ResponseEntity<StoreVO>(store, HttpStatus.OK);
 	}
 
 }

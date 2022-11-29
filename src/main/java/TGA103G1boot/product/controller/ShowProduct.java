@@ -32,8 +32,6 @@ public class ShowProduct {
 	@GetMapping({ "/ShowProduct" })
 	protected ResponseEntity<Object> showProduct(@RequestHeader(value="Authorization") String token) {
 		Claims claims = JwtUtil.getClaimsFromToken(token);
-		System.out.println(claims);
-		System.out.println(	claims.getSubject());
 		List<ProductVO> Productlist = productSvc.ShowStoreProduct(claims.getSubject());
 //		StoreVO storeId = storeSvc.findStoreAccount(store.getAccount());
 //		session.setAttribute("storeId", storeId);

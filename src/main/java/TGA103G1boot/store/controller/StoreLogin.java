@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import TGA103G1boot.common.JwtUtil;
 import TGA103G1boot.store.model.StoreVO;
 import TGA103G1boot.store.service.StoreService;
 
@@ -17,13 +18,16 @@ import TGA103G1boot.store.service.StoreService;
 @RequestMapping("/api")
 public class StoreLogin {
 	@Autowired
-	private StoreService StoreSvc;
+	private StoreService storeSvc;
 
 	@PostMapping("/StoreLogin")
 	public ResponseEntity<Object> storeLogin(@RequestBody StoreVO store) {
-		StoreSvc.login(store);
-		String jwsts = StoreSvc.verifyUser(store.getAccount());
+		storeSvc.login(store);
+		StoreVO storeId = storeSvc.findStoreAccount(store.getAccount());
+		String jwsts = storeSvc.verifyUser(store.getAccount());
+		String jwsts2 = JwtUtil.createJwt(storeId.getStore_id().toString());
 		store.setJwts(jwsts);
+		store.setEmail(jwsts2);
 		return new ResponseEntity<Object>(store, HttpStatus.OK);
 	}
 }

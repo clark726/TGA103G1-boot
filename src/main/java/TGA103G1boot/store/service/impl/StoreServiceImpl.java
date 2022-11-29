@@ -19,13 +19,12 @@ public class StoreServiceImpl implements StoreService {
 	private StoreDAO storedao;
 
 	public boolean addStore(StoreVO storevo) {
-
 		if (storedao.findStoreAccount(storevo.getAccount()) == null) {
 			storedao.insert(storevo);
 			return true;
 		}
 		return false;
-
+		
 	}
 
 	@Override

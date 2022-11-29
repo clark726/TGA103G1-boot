@@ -5,7 +5,6 @@ import java.util.List;
 import TGA103G1boot.store.model.StoreVO;
 
 public interface StoreService {
-
 	public boolean addStore(StoreVO storevo);
 	public StoreVO storeSumit(StoreVO storevo);
 	//Spring MVC
